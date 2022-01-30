@@ -1,3 +1,5 @@
+const movies = require("./data");
+
 // Exercise 1: Get the array of all directors.
 function getAllDirectors(movies) {
   //mapeamos el array movies para generar array directors que contenga solo el parametro
@@ -18,8 +20,39 @@ function getMoviesFromDirector(movies, director) {
 }
 
 // Exercise 3: Calculate the average of the films of a given director.
-function moviesAverageOfDirector(array, director) {
+function moviesAverageOfDirector(moviesFromDirector, director) {
+  //primero buscamos la suma score total del director, usando metodo reduce()
+  //se ejecuta funcion reductora sobre cada elemento del array, devolviendo como resultado
+  //un unico valor(va sumando). El callback de la funcion(lo que ejecuta sobre cada elemento
+  //del array) recibe como parametros: total como acumulador, poniendo 0 como parametro
+  //le decimos que el valor inicial equivale a 0, y movie es el valor actual .
+  //Anexo: el test incluye una pelicula de Kubrik al hacer test con Tarantino ?????????
+  //?????????????
+  //Solucion=> asegurar que coincide director para sumar solo sus scores en el reduce y
+  //al calcular la longitud array para hacer la media, hacer de nuevo un filter que filtre
+  //por director
+
+    let scoreDirector = moviesFromDirector.reduce((total, movie) => {
+      if(movie.director === director){
+        total += movie.score;
+        console.log(total);
+        console.log(movie);
+      }
+      
+      return total;
+    },0)
+    
+    console.log(scoreDirector);
+    
   
+
+  //calculamos media. 
+  moviesFromDirector = moviesFromDirector.filter(movie => movie.director === director);
+  let average = scoreDirector / moviesFromDirector.length;
+  
+  console.log(average);
+  console.log(typeof average);
+  return average;
 }
 
 // Exercise 4:  Alphabetic order by title 
