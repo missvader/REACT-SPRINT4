@@ -8,7 +8,12 @@ function getAllDirectors(movies) {
 }
 
 // Exercise 2: Get the films of a certain director
-function getMoviesFromDirector(array, director) {
+function getMoviesFromDirector(movies, director) {
+  //para encontrar todos los objetos que cumplen condicion especifica en el array
+  //usamos metodo filter(). La funcion es llamada para cada objeto del array movies.
+  //nos devuelve un nuevo array.
+  let moviesFromDirector = movies.filter(movie => movie.director === director);
+  return moviesFromDirector;
  
 }
 
