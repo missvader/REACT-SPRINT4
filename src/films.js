@@ -5,7 +5,7 @@ function getAllDirectors(movies) {
   //mapeamos el array movies para generar array directors que contenga solo el parametro
   //directors de cada movie(elemento del array movies)
   let directors =  movies.map(movie =>{return movie.director;});
-  console.log(`EXERCICE 1 -> ${directors}` );
+  //console.log(`EXERCICE 1 -> ${directors}` );
   return directors;
 }
 
@@ -35,14 +35,14 @@ function moviesAverageOfDirector(moviesFromDirector, director) {
     let scoreDirector = moviesFromDirector.reduce((total, movie) => {
       if(movie.director === director){
         total += movie.score;
-        console.log(total);
-        console.log(movie);
+        //console.log(total);
+        //console.log(movie);
       }
       
       return total;
     },0)
     
-    console.log(scoreDirector);
+    //console.log(scoreDirector);
     
   
 
@@ -50,14 +50,28 @@ function moviesAverageOfDirector(moviesFromDirector, director) {
   moviesFromDirector = moviesFromDirector.filter(movie => movie.director === director);
   let average = scoreDirector / moviesFromDirector.length;
   
-  console.log(average);
-  console.log(typeof average);
+  //console.log(average);
+  //console.log(typeof average);
   return average;
 }
 
 // Exercise 4:  Alphabetic order by title 
-function orderAlphabetically(array) {
-  
+function orderAlphabetically(movies) {
+  //mapeo array movies para crear array nuevo con los titulos de las peliculas
+  let moviesTitle = movies.map(movie =>{
+    return movie.title
+    console.log(moviesTitle);
+  });
+  //oredeno alfabeticamente las peliculas con el metodo sort()
+  moviesTitle.sort();
+  //tal y como pide el test, en el caso de que el array sea de mas de 20 peliculas, mostrar
+  //solo las 20 primeras. Metodo slice() sirve para recortar
+  if(moviesTitle.length >= 20){
+    moviesTitle = moviesTitle.slice(0,20);
+  }
+  //verifico que el resultado sea igual al de array movies, las peliculas coinciden 
+  moviesTitle.slice(0,20)=== movies.slice(0,20);
+  return moviesTitle;
 }
 
 // Exercise 5: Order by year, ascending
