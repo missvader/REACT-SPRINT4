@@ -60,7 +60,7 @@ function orderAlphabetically(movies) {
   //mapeo array movies para crear array nuevo con los titulos de las peliculas
   let moviesTitle = movies.map(movie =>{
     return movie.title
-    console.log(moviesTitle);
+    //console.log(moviesTitle);
   });
   //oredeno alfabeticamente las peliculas con el metodo sort()
   moviesTitle.sort();
@@ -75,8 +75,33 @@ function orderAlphabetically(movies) {
 }
 
 // Exercise 5: Order by year, ascending
-function orderByYear() {
-
+function orderByYear(movies) {
+  //mapeamos para crear nuevo array
+  let moviesOrderByYear = movies.map( movie => {
+    return movie;
+  })
+  //metodo sort() para ordenar. Recibe función callback de comparacion, que se ejecuta
+  //con todos los elementos del array. Función -> 2 parámetros, que toman los valores 
+  //de los elementos que se estan comparando. 
+  moviesOrderByYear.sort((movie1, movie2) => {
+    if(movie1.year < movie2.year){
+      return -1;  //orden ascendente, movie1 debe ir antes
+    }
+    if(movie1.year > movie2.year){
+      return 1;   //debe ir después
+    }
+    if(movie1.title.toLowerCase() < movie2.title.toLowerCase()){
+      return -1;  //si movie.year no cumple ninguna de las condic anteriores es que 
+                  //son iguales. Pasamos a comparar movie.title para ordenar alfab.
+                  //pasamos toLowerCase() para que no diferencie al hacer comparacion
+    }
+    if(movie1.title.toLowerCase() > movie2.title.toLowerCase()){
+      return 1;
+    }
+    return 0;
+  });
+  
+  return moviesOrderByYear;
 }
 
 // Exercise 6: Calculate the average of the movies in a category
