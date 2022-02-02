@@ -35,23 +35,13 @@ function moviesAverageOfDirector(moviesFromDirector, director) {
     let scoreDirector = moviesFromDirector.reduce((total, movie) => {
       if(movie.director === director){
         total += movie.score;
-        //console.log(total);
-        //console.log(movie);
       }
-      
       return total;
     },0)
-    
-    //console.log(scoreDirector);
-    
-  
 
   //calculamos media. 
   moviesFromDirector = moviesFromDirector.filter(movie => movie.director === director);
   let average = scoreDirector / moviesFromDirector.length;
-  
-  //console.log(average);
-  //console.log(typeof average);
   return average;
 }
 
@@ -105,8 +95,29 @@ function orderByYear(movies) {
 }
 
 // Exercise 6: Calculate the average of the movies in a category
-function moviesAverageByCategory() {
-
+function moviesAverageByCategory(movies, genre) {
+  //filter() para obtener las movies por genero. Con includes() no tenemos en cuenta 
+  //el resto de generos de una misma pelicula 
+  let moviesCategory = movies.filter(movie => {
+    if(movie.genre.includes(genre)){
+      return movie
+    }
+  })
+  //variable para filter las peliculas que no tienen score. Usamos el método Number.isFinite() como condicion para filtar.
+  //(solo los valores de tipo numerico son finitos)
+  let moviesWithoutScore = moviesCategory.filter(movie => {
+    if(!Number.isFinite(movie.score)){
+      return movie;
+    }
+  })
+  let moviesLength = moviesCategory.length - moviesWithoutScore.length;
+  
+  
+  //reduce() para la suma score de la categoria 
+  let scoreCategory = moviesCategory.reduce((movie1, movie2) => movie1.score + movie2.score);
+  
+  let averageCategory = scoreCategory / moviesLength;
+  return averageCategory;
 }
 
 // Exercise 7: Modify the duration of movies to minutes
