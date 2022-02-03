@@ -148,9 +148,13 @@ function hoursToMinutes(movies) {
 
 // Exercise 8: Get the best film of a year
 function bestFilmOfYear(movies, year) {
-  
-  
-
+  //filter() para crear array by year
+  let bestFilm = movies.filter(movie => movie.year === year)
+  //sort() para ordenar movies by score 
+  bestFilm.sort((movie1, movie2) => movie2.score - movie1.score);
+  //con Array.of() creamos nuevo array que contenga movie de mayor score
+  let bestFilmOfYear = Array.of(bestFilm[0])
+  console.log(bestFilmOfYear);
   return bestFilmOfYear;
 }
 
