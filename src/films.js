@@ -52,7 +52,7 @@ function orderAlphabetically(movies) {
     return movie.title
     //console.log(moviesTitle);
   });
-  //oredeno alfabeticamente las peliculas con el metodo sort()
+  //ordeno alfabeticamente las peliculas con el metodo sort()
   moviesTitle.sort();
   //tal y como pide el test, en el caso de que el array sea de mas de 20 peliculas, mostrar
   //solo las 20 primeras. Metodo slice() sirve para recortar
@@ -121,13 +121,37 @@ function moviesAverageByCategory(movies, genre) {
 }
 
 // Exercise 7: Modify the duration of movies to minutes
-function hoursToMinutes() {
-
+function hoursToMinutes(movies) {
+  //El metodo JSON.parse analiza una cadena de texto como JSON 
+  //JSON.stringify() convierte un objeto o valor de JavaScript en una cadena de texto JSON, de esta manera podremos manipular 
+  //la duracion de las peliculas y acceder a cada uno de los carácteres de la cadena 
+  let moviesToMinutes = JSON.parse(JSON.stringify(movies));
+  //creo variables. uso toString() para pasar el parametro a string para asi poder usar metodo split()
+  //metodo split() El método split() divide (fragmenta) un string en sub cadenas usando un separador (divisor), que aquí seran las letras 
+  //h y m. El segundo parametro (limite) limita el numero de divisiones
+  let hours= cadena => cadena.toString().split("h", 1);
+  let minutes= cadena => cadena.toString().split(" ").pop().split("m",1); //split hasta espacio, elimino con pop() y split del resto
+  //mapeamos para crear un nuevo array y a su vez indicamos condic para calcular horas y min (usando las variables que antes he creado
+  //hours y minutes. Important! Volver a pasar la cadena a number con Number())
+  moviesToMinutes.map(movie => {
+    if(movie["duration"].includes("min")){
+      movie["duration"] = 
+      Number(hours(movie["duration"]))*60 + Number(minutes(movie["duration"]))
+    }
+    else{
+      movie["duration"] = Number(hours(movie["duration"]))*60;
+    }
+  })
+ 
+  return moviesToMinutes;
 }
 
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear() {
+function bestFilmOfYear(movies, year) {
   
+  
+
+  return bestFilmOfYear;
 }
 
 
